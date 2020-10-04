@@ -1,0 +1,83 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service
+  labels:
+    app: mysql
+spec:
+  selector:
+    app: mysql
+  type: ClusterIP
+  ports:
+    - port: 3306
+      name: port
+      targetPort: 3306
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-persistent-storage
+  labels:
+    app: mysql
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app: mysql
+  name: mysql-config
+data:
+  my.cnf: |
+    [mysqld]
+    user			= root
+    port			= 3306
+    datadir			= /var/lib/mysql
+    bind-address	= 0.0.0.0
+    skip-networking	= false
+    log-bin			= /var/lib/mysql/mysql-bin
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deployment
+  labels:
+    app: mysql
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: mysql
+  replicas: 1
+  template:
+    metadata:
+      name: mysql-pod
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql-container
+          image: mysql-image
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: mysql-data
+              mountPath: /var/lib/mysql/
+            - name: mysql-configuration
+              subPath: my.cnf
+              mountPath: /etc/mysql/my.cnf
+              readOnly: true
+      volumes:
+        - name: mysql-data
+          persistentVolumeClaim:
+            claimName: mysql-persistent-storage
+        - name: mysql-configuration
+          configMap:
+            name: mysql-config

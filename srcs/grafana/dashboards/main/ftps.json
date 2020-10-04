@@ -1,0 +1,470 @@
+{
+	"annotations": {
+	  "list": [
+		{
+		  "builtIn": 1,
+		  "datasource": "-- Grafana --",
+		  "enable": true,
+		  "hide": true,
+		  "iconColor": "rgba(0, 211, 255, 1)",
+		  "name": "Annotations & Alerts",
+		  "type": "dashboard"
+		}
+	  ]
+	},
+	"editable": true,
+	"gnetId": null,
+	"graphTooltip": 0,
+	"id": 5,
+	"links": [],
+	"panels": [
+	  {
+		"aliasColors": {},
+		"bars": false,
+		"dashLength": 10,
+		"dashes": false,
+		"datasource": "InfluxDB",
+		"fieldConfig": {
+		  "defaults": {
+			"custom": {},
+			"unit": "decbytes"
+		  },
+		  "overrides": []
+		},
+		"fill": 7,
+		"fillGradient": 5,
+		"gridPos": {
+		  "h": 9,
+		  "w": 12,
+		  "x": 0,
+		  "y": 0
+		},
+		"hiddenSeries": false,
+		"id": 2,
+		"legend": {
+		  "avg": false,
+		  "current": false,
+		  "max": false,
+		  "min": false,
+		  "show": true,
+		  "total": false,
+		  "values": false
+		},
+		"lines": true,
+		"linewidth": 1,
+		"nullPointMode": "null as zero",
+		"percentage": false,
+		"pluginVersion": "7.1.5",
+		"pointradius": 1,
+		"points": true,
+		"renderer": "flot",
+		"seriesOverrides": [],
+		"spaceLength": 10,
+		"stack": true,
+		"steppedLine": true,
+		"targets": [
+		  {
+			"alias": "Transmitted bytes",
+			"groupBy": [
+			  {
+				"params": [
+				  "10s"
+				],
+				"type": "time"
+			  },
+			  {
+				"params": [
+				  "null"
+				],
+				"type": "fill"
+			  }
+			],
+			"measurement": "docker_container_net",
+			"orderByTime": "ASC",
+			"policy": "default",
+			"refId": "A",
+			"resultFormat": "time_series",
+			"select": [
+			  [
+				{
+				  "params": [
+					"tx_bytes"
+				  ],
+				  "type": "field"
+				},
+				{
+				  "params": [],
+				  "type": "mean"
+				}
+			  ]
+			],
+			"tags": [
+			  {
+				"key": "app",
+				"operator": "=",
+				"value": "ftps"
+			  }
+			]
+		  },
+		  {
+			"alias": "Received bytes",
+			"groupBy": [
+			  {
+				"params": [
+				  "10s"
+				],
+				"type": "time"
+			  },
+			  {
+				"params": [
+				  "null"
+				],
+				"type": "fill"
+			  }
+			],
+			"measurement": "docker_container_net",
+			"orderByTime": "ASC",
+			"policy": "default",
+			"refId": "B",
+			"resultFormat": "time_series",
+			"select": [
+			  [
+				{
+				  "params": [
+					"rx_bytes"
+				  ],
+				  "type": "field"
+				},
+				{
+				  "params": [],
+				  "type": "mean"
+				}
+			  ]
+			],
+			"tags": [
+			  {
+				"key": "app",
+				"operator": "=",
+				"value": "ftps"
+			  }
+			]
+		  }
+		],
+		"thresholds": [],
+		"timeFrom": null,
+		"timeRegions": [],
+		"timeShift": null,
+		"title": "Network Usage",
+		"tooltip": {
+		  "shared": true,
+		  "sort": 0,
+		  "value_type": "individual"
+		},
+		"type": "graph",
+		"xaxis": {
+		  "buckets": null,
+		  "mode": "time",
+		  "name": null,
+		  "show": true,
+		  "values": []
+		},
+		"yaxes": [
+		  {
+			"format": "decbytes",
+			"label": null,
+			"logBase": 1,
+			"max": null,
+			"min": null,
+			"show": true
+		  },
+		  {
+			"format": "short",
+			"label": null,
+			"logBase": 1,
+			"max": null,
+			"min": null,
+			"show": true
+		  }
+		],
+		"yaxis": {
+		  "align": false,
+		  "alignLevel": null
+		}
+	  },
+	  {
+		"datasource": null,
+		"fieldConfig": {
+		  "defaults": {
+			"custom": {}
+		  },
+		  "overrides": []
+		},
+		"folderId": null,
+		"gridPos": {
+		  "h": 11,
+		  "w": 8,
+		  "x": 12,
+		  "y": 0
+		},
+		"headings": true,
+		"id": 6,
+		"limit": 10,
+		"pluginVersion": "7.1.5",
+		"query": "",
+		"recent": true,
+		"search": false,
+		"starred": false,
+		"tags": [],
+		"timeFrom": null,
+		"timeShift": null,
+		"title": "Dashboards",
+		"type": "dashlist"
+	  },
+	  {
+		"datasource": "InfluxDB",
+		"fieldConfig": {
+		  "defaults": {
+			"custom": {},
+			"decimals": 4,
+			"mappings": [],
+			"max": 10000000,
+			"min": 0,
+			"thresholds": {
+			  "mode": "percentage",
+			  "steps": [
+				{
+				  "color": "green",
+				  "value": null
+				},
+				{
+				  "color": "#EAB839",
+				  "value": 65
+				},
+				{
+				  "color": "red",
+				  "value": 90
+				}
+			  ]
+			},
+			"unit": "decbytes"
+		  },
+		  "overrides": []
+		},
+		"gridPos": {
+		  "h": 8,
+		  "w": 12,
+		  "x": 0,
+		  "y": 9
+		},
+		"id": 4,
+		"options": {
+		  "reduceOptions": {
+			"calcs": [
+			  "mean"
+			],
+			"fields": "",
+			"values": false
+		  },
+		  "showThresholdLabels": false,
+		  "showThresholdMarkers": true
+		},
+		"pluginVersion": "7.1.5",
+		"targets": [
+		  {
+			"groupBy": [
+			  {
+				"params": [
+				  "10s"
+				],
+				"type": "time"
+			  },
+			  {
+				"params": [
+				  "null"
+				],
+				"type": "fill"
+			  }
+			],
+			"measurement": "docker_container_mem",
+			"orderByTime": "ASC",
+			"policy": "default",
+			"refId": "A",
+			"resultFormat": "table",
+			"select": [
+			  [
+				{
+				  "params": [
+					"usage"
+				  ],
+				  "type": "field"
+				},
+				{
+				  "params": [],
+				  "type": "mean"
+				}
+			  ]
+			],
+			"tags": [
+			  {
+				"key": "io.kubernetes.container.name",
+				"operator": "=",
+				"value": "ftps-container"
+			  }
+			]
+		  }
+		],
+		"timeFrom": null,
+		"timeShift": null,
+		"title": "Memory",
+		"type": "gauge"
+	  },
+	  {
+		"aliasColors": {},
+		"bars": false,
+		"dashLength": 10,
+		"dashes": false,
+		"datasource": "InfluxDB",
+		"fieldConfig": {
+		  "defaults": {
+			"custom": {},
+			"unit": "hertz"
+		  },
+		  "overrides": []
+		},
+		"fill": 1,
+		"fillGradient": 3,
+		"gridPos": {
+		  "h": 6,
+		  "w": 12,
+		  "x": 12,
+		  "y": 11
+		},
+		"hiddenSeries": false,
+		"id": 8,
+		"legend": {
+		  "alignAsTable": true,
+		  "avg": true,
+		  "current": true,
+		  "max": true,
+		  "min": true,
+		  "rightSide": false,
+		  "show": false,
+		  "total": true,
+		  "values": true
+		},
+		"lines": true,
+		"linewidth": 1,
+		"nullPointMode": "null as zero",
+		"percentage": false,
+		"pluginVersion": "7.1.5",
+		"pointradius": 2,
+		"points": false,
+		"renderer": "flot",
+		"seriesOverrides": [],
+		"spaceLength": 10,
+		"stack": false,
+		"steppedLine": true,
+		"targets": [
+		  {
+			"alias": "CPU",
+			"groupBy": [
+			  {
+				"params": [
+				  "10s"
+				],
+				"type": "time"
+			  },
+			  {
+				"params": [
+				  "null"
+				],
+				"type": "fill"
+			  }
+			],
+			"measurement": "docker_container_cpu",
+			"orderByTime": "ASC",
+			"policy": "default",
+			"refId": "A",
+			"resultFormat": "time_series",
+			"select": [
+			  [
+				{
+				  "params": [
+					"usage_total"
+				  ],
+				  "type": "field"
+				},
+				{
+				  "params": [],
+				  "type": "mean"
+				}
+			  ]
+			],
+			"tags": [
+			  {
+				"key": "app",
+				"operator": "=",
+				"value": "ftps"
+			  }
+			]
+		  }
+		],
+		"thresholds": [],
+		"timeFrom": null,
+		"timeRegions": [],
+		"timeShift": null,
+		"title": "CPU",
+		"tooltip": {
+		  "shared": true,
+		  "sort": 0,
+		  "value_type": "individual"
+		},
+		"type": "graph",
+		"xaxis": {
+		  "buckets": null,
+		  "mode": "time",
+		  "name": null,
+		  "show": true,
+		  "values": []
+		},
+		"yaxes": [
+		  {
+			"format": "hertz",
+			"label": null,
+			"logBase": 1,
+			"max": null,
+			"min": null,
+			"show": true
+		  },
+		  {
+			"format": "short",
+			"label": null,
+			"logBase": 1,
+			"max": null,
+			"min": null,
+			"show": true
+		  }
+		],
+		"yaxis": {
+		  "align": false,
+		  "alignLevel": null
+		}
+	  }
+	],
+	"refresh": "10s",
+	"schemaVersion": 26,
+	"style": "dark",
+	"tags": [],
+	"templating": {
+	  "list": []
+	},
+	"time": {
+	  "from": "now-15m",
+	  "to": "now"
+	},
+	"timepicker": {},
+	"timezone": "",
+	"title": "ftps",
+	"uid": "BmpLTcDGz",
+	"version": 1
+  }

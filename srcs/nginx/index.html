@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ft_services</title>
+		<style>
+        	.Help{
+				margin: auto;
+			  	width: 50%;
+			  	border: 3px solid white;
+				padding: 10px;
+				background-color: rgba(28, 52, 59, 0.692);
+            }
+            .Sites{
+				font-size: 20px;
+				margin-bottom: -10px;
+			}
+			body {
+				background-image: url('https://i.pinimg.com/originals/b6/ef/fb/b6effb3a1ed2a8d16497d7d652c2fdd4.jpg');
+				background-repeat: no-repeat;
+				background-attachment: fixed; 
+				font-family: Arial, Helvetica, sans-serif;
+            	color: rgb(210, 244, 255);
+			}
+            a {
+				color: rgb(119, 255, 244);
+				font-weight: bolder;
+				text-decoration: none;
+			}
+			b {
+				color: white;
+			}
+			dt {margin-bottom: 6px; }
+            strong { color :white;}
+			h3 {
+				margin: 0px;
+  				padding: 0px;
+				margin-bottom: -10px;
+			}
+			h3, h1, dt {
+            	text-align: center;
+				color: white;
+			}
+            h1{text-align: center;}
+		</style>
+	</head>
+	<body>
+		<h1>Welcome to ft_services</h1>
+		<div class="Help">
+			<dt = class="Sites"><strong>Sites</strong></dt>
+			<dd>
+				<ul>
+					<li><a href="http://192.168.99.102:5000" target="_blank">phpMyAdmin</a>
+					<ul><li><strong>Admin:</strong> admin | admin</li></ul>
+					</li><br>
+					<li><a href="http://192.168.99.103:5050" target="_blank">Wordpress</a>
+						<ul>
+							<li><strong>Admin:</strong> admin | admin</li>
+							<li><strong>Author:</strong> norminette | user</li>
+							<li><strong>Subscriber:</strong> bodysseu | user</li>
+						</ul>
+					</li><br>
+					<li><a href="http://192.168.99.104:3000" target="_blank">Grafana</a>
+						<ul><li><strong>Admin:</strong> admin | admin</li></ul>
+					</li>
+				</ul>
+			</dd>
+			<h3>Commands</h3>
+			<dl>
+				<dt><strong>SSH</strong></dt>
+				<dd><b>Command: </b>ssh admin@192.168.99.100 -p 22<br>
+					<b>Pasword:</b> admin
+				</dd>
+				<br>
+				<dt><strong>FTP</strong></dt>
+				<dd><b>Upload file: </b>
+					curl ftp://192.168.99.101:21 --ssl -k -u admin:admin -T filename<br>
+					<b>Download file: </b><br>
+					curl ftp://192.168.99.101:21/filename --ssl -k -u admin:admin -o ./filename<br>
+				</dd>
+				<br>
+				<dt><strong>Kubernetes commands</strong></dt>
+				<dd>
+					<strong>Kill process: </strong>
+					<ul>
+						<li>kubectl exec deployment/nginx-deployment -- pkill nginx</li>
+						<li>kubectl exec deployment/mysql-deployment -- pkill mysqld</li>
+						<li>kubectl exec deployment/ftps-deployment -- pkill vsftpd</li>
+						<li>kubectl exec deployment/phpmyadmin-deployment -- pkill php</li>
+						<li>kubectl exec deployment/wordpress-deployment -- pkill php</li>
+						<li>kubectl exec deployment/influxdb-deployment -- pkill influxd</li>
+						<li>kubectl exec deployment/telegraf-deployment -- pkill telegraf</li>
+						<li>kubectl exec deployment/grafana-deployment -- pkill grafana-server</li>
+					</ul>
+				</dd>
+			</dl>
+		</div>
+	</body>
+</html>
